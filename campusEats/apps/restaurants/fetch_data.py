@@ -121,7 +121,7 @@ def create_fixture(input_file, output_file, api_key):
         json.dump(fixture_data, fixture_file, indent=2)
 
 if __name__ == "__main__":
-    api_key = "AIzaSyAxBAGRJmEsJw6gQDwFeoWSRKzjIecNyVA"
+    api_key = API_KEY
 
     # Perform both steps
     data = fetch_google_maps_data(api_key)
