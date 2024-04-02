@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register - My Website{% endblock %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'user/login.css' %}">
+  
+</head>
+ 
+    <div class="register-form">
+        <form method="post">
+            {% csrf_token %}
+            {{error_message}}
+            <div class="form-group">
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" id="id_username" required>
+            </div>
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" id="id_email" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password1">Password:</label>
+                <input type="password" name="password1" id="id_password1" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password2">Confirm Password:</label>
+                <input type="password" name="password2" id="id_password2" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Error message popup div -->
+    <div id="error-popup" class="error-popup"></div>
+
+    <!-- Add your JavaScript to show/hide the error message -->
+    <script>
+        // Function to display the error message popup
+        function showErrorPopup(message) {
+            const errorPopup = document.getElementById("error-popup");
+            errorPopup.textContent = message;
+            errorPopup.style.display = "block";
+            setTimeout(() => {
+                errorPopup.style.display = "none";
+            }, 3000); // Hide the popup after 3 seconds (adjust as needed)
+        }
+        console.log("Error message:", errorMessage);
+        // Call the showErrorPopup function with the error message from the template context
+        const errorMessage = "{{ error_message }}"; // Escape the message for JavaScript
+        if (errorMessage) {
+            showErrorPopup(errorMessage);
+        }
+    </script>
+{% endblock %}

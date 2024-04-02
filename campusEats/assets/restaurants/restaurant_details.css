@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+  }
+  
+
+  .column {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  
+
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+}
+.img-container{
+    width:100%;
+    height:350px;    
+}
+
+.img-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+
+.bookmark-link {
+    text-decoration: none; 
+    font-size: 16px;
+    color: #e85437; 
+  }
+  
+.bookmark {
+    margin-right: 5px; /* Add some spacing between the icon and text */
+}
+
+.bookmark-container > .bookmark-link{
+    position:absolute;
+    right:2rem;
+}
+.location-icon {
+    font-size: 24px; 
+    color: #b9bbbc; 
+}
+
+
+h1{
+
+    font-size: 36px;
+}
+
+.name-container{
+   padding:20px;
+}
+
+.address-container{
+    padding: 2rem;
+    background-color: rgb(242, 238, 238);
+    font-size: larger;
+    border-style: groove;
+    border-radius: 2px;
+    
+}
+
+.descr-container{
+    line-height: 2rem;
+    background-color: rgb(242, 238, 238);
+    color: rgb(80, 78, 78);
+}
+
+.review-btn{
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding:5px;
+    height: 40px;
+    width:100px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #e85437;
+    color:white;
+}
+
+.button-container{
+    position:relative;
+}
+
+.button-container button{
+    position:absolute;
+    right:0;
+}
+
+
+
+ul{
+    list-style-type: none;
+}
+
+.user_id_txt{
+    font-size: 17px;
+    font-weight: bold;
+    color:rgb(120, 119, 119);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.user-info i {
+    margin-right: 10px; 
+}
+
+.timestamp{
+    font-size: 12px;
+    color:rgb(90, 88, 88);
+}
+
+
+
+.child-comment{
+    margin-left: 4rem;
+}
+
+.child-id{
+    font-size: 17px;
+    font-weight: bold;
+    color:rgb(120, 119, 119);
+}
+
+.child-profile {
+    display: flex;
+    align-items: center;
+
+}
+.child-profile i {
+    margin-right: 10px; 
+}

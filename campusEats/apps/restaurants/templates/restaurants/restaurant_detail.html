@@ -1,0 +1,280 @@
+<!-- restaurants/restaurant_detail.html -->
+
+<!--link the style sheet-->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Welcome - My Website{% endblock %}
+
+
+{% block content %}
+
+
+
+<head>
+    <link rel="stylesheet" href="{% static 'restaurants/restaurant_details.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="column column_1">
+ 
+          <div class="img-container">
+            <img src="{{ restaurant.ImageURL }}" alt="{{ restaurant.Name }}">
+        </div>
+        <div class="button-container">
+            <a href="{% url 'create_review' %}?restaurant_id={{ restaurant.RestaurantID }}"> <button class="review-btn">Add Review </button></a>
+        </div>
+         
+        
+          
+        </div>
+        <div class="column column_2">
+        <div class="bookmark-container">
+            <a href="#" class="bookmark-link">
+                <i class="fa fa-bookmark"></i> Bookmark
+              </a>
+        </div>
+        <div class="name-container">
+            <h1>{{ restaurant.Name }}</h1>
+        </div>
+
+        <div class="address-container">
+            <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
+            {{ restaurant.Location }}
+            <br><br>
+            <div class="descr-container">{{ restaurant.Description }}</div>
+            <br>
+            <div class="descr-container"><b>Open days:</b> {{ restaurant.Open_dates }}</div>
+            <br>
+            <div class="descr-container"><b>Phone:</b> {{ restaurant.Phone }}</div>
+        </div>
+        <!-- Display available reactions -->
+
+        <div style="height:50px"></div>
+        <div style="height:50px"><h3 style="color:orangered; margin-left: 1rem;">Reviews</h3></div>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <!-- Display review details -->
+                    <!--{{ review.ReviewID }}-->
+        
+                    <!-- Check if it's a parent review or a child review -->
+                    {% if review.ParentReviewID == None %}
+                        <div class="user-info">
+                            <i class='far fa-user-circle' style="font-size: 25px; color:#b9bbbc;"></i>
+                            <p class="user_id_txt">{{ review.UserID }}</p>   
+                        </div>
+                        <p class="timestamp">{{ review.Timestamp }}</p>
+                        <br>
+                        <h5 style="color:grey">Rating {{ review.Rating }}</h5> 
+                        {{ review.Description }}<br><br>
+                    
+                        <!-- Add a button to redirect to the restaurant_detail.html page for parent reviews -->
+                        <a href="{% url 'create_review' %}?restaurant_id={{ restaurant.RestaurantID }}&review_id={{ review.ReviewID }}">
+                            <button class="review-detail-btn" style="background-color:rgb(250, 234, 234); border-radius:5px ; height:25px; border-color: darkgrey;">Reply <i class="fa-solid fa-reply"></i></button><br>
+                            
+                        </a>
+                        <!-- Display available reactions -->
+                        <!--Available Reactions:-->
+                        {% for reaction in reactions %}
+                        <span class="add-reaction-btn" data-review-id="{{ review.ReviewID }}" data-reaction-id="{{ reaction.id }}">{{ reaction.emoji }}</span>
+                        {% endfor %}
+                        <!-- Display user reactions here, you can use JavaScript to update this section -->
+                        <!-- <div class="user-reactions" id="user-reactions-{{ review.ReviewID }}">
+                            {% if review.user_reactions %}
+                            {{ review.user_reactions }}
+                            {% else %}
+                            Be the first one to react!
+                            {% endif %}
+                        </div> -->
+                        <hr class="horizontal-line">
+                        <div class="user-reactions" id="user-reactions-{{ review.ReviewID }}">
+                            {% if review.extra %}
+                            User Reactions: {{ review.extra }}
+                            {% else %}
+                            No reactions yet.
+                            {% endif %}
+                        </div>
+                        
+                        
+                    {% else %}
+                        <!-- Display a child comment, you can use additional styling or indentation -->
+                        <div class="child-comment"> 
+                            <div class="child-profile">
+                                <i class='far fa-user-circle' style="font-size: 25px; color:#b9bbbc;"></i>
+                                <p class="child-id">{{ review.UserID }}</p>
+                            </div> 
+                            <p class="timestamp">{{ review.Timestamp }}</p>
+                            <br>
+                            
+                            <h5 style="color:grey">Rating {{ review.Rating }}</h5> 
+                            {{ review.Description }}
+                            <br>
+                            <!-- Display available reactions -->
+                            <!--Available Reactions:-->
+                            {% for reaction in reactions %}
+                             <span class="add-reaction-btn" data-review-id="{{ review.ReviewID }}" data-reaction-id="{{ reaction.id }}">{{ reaction.emoji }}</span>
+                            {% endfor %}
+
+                            <!-- Display user reactions here, you can use JavaScript to update this section -->
+                            <div class="user-reactions" id="user-reactions-{{ review.ReviewID }}">
+                            <!-- {% if review.user_reactions %}
+                            {{ review.user_reactions }}
+                            {% else %}
+                            Be the first one to react!
+                            {% endif %} -->
+                            {% if review.extra %}
+                            User Reactions: {{ review.extra }}
+                            {% else %}
+                            No reactions yet.
+                            {% endif %}
+                    </div>
+                            
+                            
+                        </div>
+                    {% endif %}
+        
+                    
+                    
+
+                    
+
+                    
+                    
+                </li>
+                <div style="height:50px"></div>
+
+                    <!-- Display user reactions here, you can use JavaScript to update this section -->
+                    <!-- <div class="user-reactions" id="user-reactions-{{ review.ReviewID }}">
+                        {% if review.extra %}
+                        User Reactions: {{ review.extra }}
+                        {% else %}
+                        No reactions yet.
+                        {% endif %}
+                    </div> -->
+            {% endfor %}
+        </ul>
+                
+    
+        </div>
+      </div>
+
+   <!-- Add more details as needed -->
+   <script>
+//     document.addEventListener("DOMContentLoaded", function () {
+//     const reactionButtons = document.querySelectorAll(".add-reaction-btn");
+
+//     reactionButtons.forEach((button) => {
+//         button.addEventListener("click", function () {
+//             console.log("clicked");
+//             const reviewID = this.getAttribute("data-review-id");
+//             const availableReactions = document.querySelectorAll(`.add-reaction-btn[data-review-id="${reviewID}"]`);
+
+//             // Show/hide available reactions
+//             availableReactions.forEach((reaction) => {
+//                 reaction.style.display = "inline";
+//             });
+
+//             // Add a click event to each reaction
+//             availableReactions.forEach((reaction) => {
+//                 reaction.addEventListener("click", function () {
+//                     const reactionID = this.getAttribute("data-reaction-id");
+//                     // Send the reactionID and reviewID to the server via AJAX
+//                     // Update the user's reactions for the review with the new reaction
+//                     // You may need to customize this part based on your Django views
+//                     // Update the user reactions in the user-reactions div
+//                     const userReactionsDiv = document.getElementById(`user-reactions-${reviewID}`);
+//                     userReactionsDiv.innerHTML = `User Reactions: ${reaction.innerHTML}`;
+//                 });
+//             });
+//         });
+//     });
+// });
+document.addEventListener("DOMContentLoaded", function () {
+        const reactionButtons = document.querySelectorAll(".add-reaction-btn");
+
+        reactionButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const reviewID = this.getAttribute("data-review-id");
+                const reactionID = this.getAttribute("data-reaction-id");
+                console.log(reviewID, reactionID )
+                // Send the reactionID and reviewID to the server via AJAX
+                // Update the user's reactions for the review with the new reaction
+                // You can use the fetch API or a library like Axios for the AJAX request\
+
+                const data = new URLSearchParams();
+                data.append('review_id', reviewID);
+                data.append('reaction_id', reactionID);
+
+                // const data1 = new URLSearchParams();
+                // data1.append('review_id', reviewID);
+                // data1.append('reaction_id', reactionID);
+
+               
+                fetch('{% url "save_reaction"  %}', {
+                    method: "POST",
+                    body: data,
+
+                })
+
+                .then((response) => {
+                    if (response.ok) {
+                        // Reaction saved, now get the emoji
+                        return fetch(`{% url 'get_reaction_emoji' %}`, {
+                            method: "POST",
+                            body: data,
+                        });
+                    } else {
+                        throw new Error("Error saving reaction");
+                    }
+                })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error("Error fetching emoji");
+                    }
+                })
+                .then((data) => {
+                    // Update the user reactions in the user-reactions div with the emoji
+                    const userReactionsDiv = document.getElementById(`user-reactions-${reviewID}`);
+                    // userReactionsDiv.innerHTML = `User Reactions: ${data.emoji}`;
+                    // Initialize an empty string to store the HTML content
+                    let emojiContent = "";
+                    console.log("here", data.emoji )
+                    // Loop over the dictionary and add each emoji icon and its count to the content
+                    for (const emojiIcon in data.emoji) {
+                        const count = data.emoji[emojiIcon];
+                        emojiContent += `${emojiIcon} ${count}&nbsp;&nbsp;`; // Add a space between emojis
+                    }
+
+                    // Set the innerHTML of the div to display the emoji icons and counts
+                    userReactionsDiv.innerHTML = emojiContent;
+
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            });
+        });
+    });
+
+
+
+</script>
+
+
+</body>
+
+
+  
+
+{% endblock %}

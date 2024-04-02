@@ -1,0 +1,255 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*search box*/
+.search-wrapper{
+    padding-left: 6rem;
+    padding-right: 4rem;
+    overflow:hidden;
+    background-color: white;
+}
+#search { 
+    float:left; 
+    padding:10px;
+    color: black;
+    width:80%;
+    border: 2px solid black;
+    text-align: left;
+}
+
+.label_container{
+   
+    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+#search_button{
+    
+    width:150px;
+    background-color: black;
+    border:1px solid;
+    color:white;
+    border-radius: 30px;
+    padding:10px 30px;
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 15px;
+    cursor:pointer;
+    float:left;
+  }
+
+#search_button:hover{
+    background-color: grey;
+    color: white;
+}
+
+
+
+@media screen and (max-width: 768px){
+    #search{
+        width:100%;
+    }
+    #search_button{
+        margin-top: 2rem;
+    }
+}
+
+input{
+    font-size: 1rem;
+}
+
+
+
+
+.dropbtn{
+    padding:12px;
+    font-size: 16px;
+    border: solid 1px grey;
+    color:grey;
+    border-radius: 18px;
+    
+}
+
+.dropbtn:hover{
+    border-color: orangered;
+    background-color: rgb(247, 203, 187);
+    color: orangered;
+}
+
+.dropdown_filters{
+    position:relative;
+    display:inline-block;
+    
+}
+
+.dropdown_items{
+    display:none;
+    position:absolute;
+    background-color: rgb(231, 229, 226);
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 7px;
+
+}
+
+.dropdown_items a{
+    color:black;
+    padding:12px 16px;
+    text-decoration: none;
+    display:block;
+}
+
+.dropdown_items a:hover{
+    background: #dad8d8;
+    border-radius: 7px;
+    border-style: 1px solid orangered;
+}
+
+.dropdown_filters:hover .dropdown_items{display: block;}
+
+
+
+/* filters */
+.dropdown_nav{
+    height:8vh;  
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    width:40%;
+    margin-top:2rem;
+    margin-left:5rem;
+    color:grey;
+}
+
+/* carousel code */
+
+.image-carousel{
+    margin-top: 2rem;
+}
+
+.slides {display: none;}
+
+
+.slides img {
+    vertical-align: middle;
+    width:100%;}
+
+
+.carousel-container {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+
+}
+
+.active {
+    background-color: #ffffff;
+}
+    
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+} 
+
+/* The dots/bullets/indicators */
+.moving-dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.section1_container{
+    height:800px;
+}
+
+/* card layout css */
+.cards{
+    margin-top: 80px;
+    margin-left: 100px;
+    margin-right: 100px;
+    max-width: 100%;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:6rem;
+    font-family: Arial, Helvetica, sans-serif;
+    /* margin-bottom: 800rem; */
+
+}
+
+@media(max-width:768px){
+    .cards{
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+.card{
+
+    /*width:100%;*/
+    width:420px;
+    height:350px;
+    overflow:hidden;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius:8px;
+}
+
+
+.card_img{
+    max-width: 100%;
+    max-height: 70%;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display: block;
+
+}
+
+.card_content{
+    line-height:1.5 ;
+    font-size:0.9rem;
+    padding:15px;
+    background: #fafafa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.card_content > p:first-of-type{
+    margin-top: 0;
+}
+.card_content > p:last-of-type{
+    margin-bottom: 0;
+}
+.card_info{
+    padding:15px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e5e3e3;
+    font-size: 1.1rem;
+    border-bottom:1px solid rgb(215, 212, 212);
+    border-radius: 2px;
+}
+
+.card_link{
+    color:rgb(19, 18, 19);
+    text-decoration: none;
+}
+
+.card_link:hover{
+    text-decoration:underline;
+}
+
+a{
+    text-decoration:none!important;
+}
+

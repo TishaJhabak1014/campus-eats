@@ -1,0 +1,160 @@
+<!-- admin.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin view {% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'admin/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/update_restaurants.css' %}">
+
+</head>
+
+<style>
+    form input{
+    text-align: left;
+    padding-left: 1rem;
+}
+
+</style>
+<!--section between the nav and form-->
+<div class="up_container">
+
+</div>
+
+ <div class="container">
+     
+     <div class="left-column">
+         <a href="/register/admin">UPDATE PROFILE</a>
+         <a href="/register/admin/add-restaurants">ADD RESTAURANT</a>
+         <a href="/register/admin/update-restaurants/">UPDATE RESTAURANT</a>
+         <a href="/register/admin/update-users">UPDATE USERS</a>
+         <a href="#">INBOX</a>
+     </div>
+
+     <div class="right-column-add-restaurants" style="height:2000px">
+         <h5>ADD RESTAURANT</h5><br>
+         <form action="/insert_restaurant/" method="post"> {% csrf_token %}
+
+            <label for="restaurant_name"> Add Restaurant Name </label>
+            <div class="form_gp">
+                <input type="text" id="restaurant_name" name="name" required>
+            </div>
+            
+            <label for="restaurant_description"> Add description </label><br><br>
+            <div class="form_gp">
+                <textarea id="restaurant_description" name="restaurant_desc" rows="4" cols="50"></textarea>
+            </div><br>
+            
+            <label for="add_pictures"> Add Image URL </label>
+            <div class="form_gp">
+                <input type="text" id="img_url" name="img_url" style="width:500px;">
+            </div>
+
+            <label for="address"> Add Location </label>
+            <div class="form_gp">
+                <input type="text" id="location" name="location" style="width:500px">
+            </div>   
+
+            <label for="phone"> Add Phone</label>
+            <div class="form_gp">
+                <input type="text" id="phone" name="phone" required>
+            </div>  
+            
+            <label for="dropdown"> Select price range</label><br><br>
+            <select id="dropdown" class="form_gp" name="price" style="height:2rem; width:2rem; border-style: none;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <br><br>
+
+            <label><h4>Select all that Apply</h4></label><br>
+           <div class="container_options">
+            <label class="checkbox-container">Dine In<input type="checkbox" name="dine_in" style="height:15px"></label><br>
+             
+            <label class="checkbox-container">Delivery <input type="checkbox" name="delivery" style="height:15px"></label><br>
+    
+            <label class="checkbox-container">Reservable<input type="checkbox" name="reservable" style="height:15px"></label><br>
+            <label class="checkbox-container">Serves Wine <input type="checkbox" name="serves_wine" style="height:15px"></label> <br>
+           </div>
+
+            <label for="open_hours"> <h4>Open Hours </h4></label>
+            <br><br>
+
+            <div class="open_hrs_div">
+                <div class="open_hrs_div_left">
+                    <table class="open_hrs_table">
+                        <thead>
+                            <tr>
+                                <th class="open_hrs_th">DAY</th>
+                                <th class="open_hrs_th">Open time</th>
+                                <th class="open_hrs_th">Close time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label class="td_day">Monday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Tuesday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Wednesday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Thursday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Friday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Saturday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="td_day">Sunday</label></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                                <td><input type="text" class="td_time" id="td_time"></td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+      
+    
+
+           
+           
+            <button id="add-restaurant-btn" type="submit" style="background-color: black;">ADD RESTAURANT</button>
+        </form>
+
+     </div>
+     
+ </div>
+
+
+
+
+
+ <div class="up_container">
+ 
+ </div>
+
+
+{% endblock %}
